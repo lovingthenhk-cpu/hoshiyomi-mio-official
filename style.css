@@ -41,3 +41,7 @@ body[data-theme="violet"]{--navy:#1b1434;--navy2:#2b204f;--accent:#f3b8dc;--pink
 /* Wider mobile breakpoint now that navigation also includes STORY. */
 @media(max-width:1430px){.nav{display:none}.nav.open{display:flex;position:absolute;top:96px;left:0;right:0;background:#0b162e;padding:28px 6%;border-bottom:1px solid var(--line);flex-direction:column;gap:20px;max-height:calc(100vh - 96px);overflow-y:auto;z-index:15;box-shadow:0 20px 40px #0008}.menu-toggle{display:block;margin-left:8px}}
 @media(max-width:650px){.nav.open{top:76px;max-height:calc(100vh - 76px)}}
+
+.noscript-note{padding:20px;text-align:center;background:#243953;color:white}
+.art-download{display:flex;max-width:280px;margin:18px auto 0;justify-content:center}.footer-bottom button{color:#9db1cd;cursor:pointer;background:transparent;border:0;font:10px 'DM Mono',monospace;letter-spacing:.08em;padding:0}.footer-bottom button:hover{color:var(--accent)}
+@media(max-width:650px){.footer-bottom button{font-size:10px}}

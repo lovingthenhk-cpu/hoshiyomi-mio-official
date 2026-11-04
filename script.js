@@ -144,3 +144,10 @@ function renderNovel(){const node=storyNodes[activeStory];if(node.ending){collec
 document.querySelector('#story-restart').addEventListener('click',()=>{activeStory='intro';renderNovel()});renderNovel();
 // Make narrative discoverable from the global site finder.
 searchableSections.splice(searchableSections.findIndex(item=>item[0]==='gallery'),0,['story','STORY','分岐する星の物語','ノベル エンディング 選択肢 読む ゲーム']);
+
+// Offline shell for returning visitors; registration failure never blocks the website.
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+// Download the original generated illustration directly from the gallery.
+document.querySelectorAll('.art-tile').forEach((button,index)=>button.addEventListener('click',()=>{const a=document.querySelector('#download-art');a.href=button.dataset.art;a.download=`hoshiyomi-mio-gallery-${String(index+1).padStart(2,'0')}.png`}));
+// Explicit share action, with feedback that does not depend on an external provider.
+document.querySelector('#site-share').addEventListener('click',async event=>{const button=event.currentTarget;const link=window.location.origin+window.location.pathname;try{await navigator.clipboard.writeText(link);button.textContent='コピーしました ✓'}catch{button.textContent='コピーできませんでした';window.prompt('サイトのURLはこちらです',link)}setTimeout(()=>{button.textContent='サイトURLをコピー ⧉'},2500)});

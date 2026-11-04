@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lovingthenhk-cpu.github.io/hoshiyomi-mio-official/sitemap.xml
