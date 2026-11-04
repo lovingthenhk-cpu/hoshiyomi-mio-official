@@ -92,3 +92,10 @@ const logDialog=document.querySelector('#log-dialog');
 document.querySelectorAll('.log-item').forEach((article,index)=>{article.querySelector('.log-arrow').addEventListener('click',()=>{document.querySelector('#log-dialog-title').textContent=article.querySelector('h3').textContent;document.querySelector('#log-dialog-body').textContent=observationStories[index]||'';logDialog.showModal()})});
 document.querySelector('#close-log').addEventListener('click',()=>logDialog.close());
 logDialog.addEventListener('click',event=>{if(event.target===logDialog)logDialog.close()});
+// Generated prop archive — local lore, no external links or fictitious sales claims.
+const equipmentLore=[
+ 'ミオがいつも身につけている星形の髪飾り。誰かからもらった大切な贈り物だけれど、送り主の名前だけが思い出せません。',
+ '七番観測所の古い望遠鏡。レンズの端に小さな星形の傷があります。遠い星を見るより、今夜の空を誰かと分け合うための道具です。',
+ '丘の上にぽつんと建つ七番観測所。夜になると窓に小さな光が灯り、今日もミオがひとり、星の声を探しています。'
+];
+document.querySelectorAll('[data-equipment]').forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.equipment);document.querySelectorAll('[data-equipment]').forEach(el=>{el.classList.toggle('active',el===button);el.setAttribute('aria-pressed',String(el===button))});document.querySelector('#equipment-tag').textContent=`COLLECTION NO. 0${index+1}`;document.querySelector('#equipment-description').textContent=equipmentLore[index]}));
