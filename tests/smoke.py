@@ -46,6 +46,10 @@ def main():
                 assert '深呼吸' in page.locator('.chat-bubble.mio').last.inner_text()
                 page.locator('#chat-clear').click()
                 assert page.locator('.chat-bubble').count()==1
+                page.locator('#oracle-reveal').click()
+                assert page.locator('#oracle-result').is_visible()
+                assert page.locator('#oracle-title').inner_text()
+                assert page.locator('#oracle-card').evaluate('c=>c.width===900 && c.height===1200')
             assert not errors,errors
             print(f'PASS {width}px')
             context.close()
