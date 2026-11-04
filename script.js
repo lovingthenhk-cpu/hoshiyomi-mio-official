@@ -151,3 +151,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 document.querySelectorAll('.art-tile').forEach((button,index)=>button.addEventListener('click',()=>{const a=document.querySelector('#download-art');a.href=button.dataset.art;a.download=`hoshiyomi-mio-gallery-${String(index+1).padStart(2,'0')}.png`}));
 // Explicit share action, with feedback that does not depend on an external provider.
 document.querySelector('#site-share').addEventListener('click',async event=>{const button=event.currentTarget;const link=window.location.origin+window.location.pathname;try{await navigator.clipboard.writeText(link);button.textContent='コピーしました ✓'}catch{button.textContent='コピーできませんでした';window.prompt('サイトのURLはこちらです',link)}setTimeout(()=>{button.textContent='サイトURLをコピー ⧉'},2500)});
+
+// The observatory's clock always uses Japan Standard Time, independent of visitor timezone.
+const observatoryClock=document.querySelector('#observatory-clock');
+const jstClockFormatter=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+function refreshObservatoryClock(){const now=new Date();observatoryClock.textContent=jstClockFormatter.format(now);observatoryClock.dateTime=observatoryClock.textContent}
+refreshObservatoryClock();setInterval(refreshObservatoryClock,1000);

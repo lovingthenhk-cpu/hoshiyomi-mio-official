@@ -5,3 +5,6 @@ node_modules/
 
 # Generated visual assets are intentionally versioned
 !assets/*.png
+
+__pycache__/
+*.pyc

@@ -1,4 +1,4 @@
-const CACHE_VERSION='hoshiyomi-mio-v2-20261104';
+const CACHE_VERSION='hoshiyomi-mio-v3-20261104';
 const PRECACHE=['./','index.html','style.css','script.js','manifest.webmanifest','assets/favicon.svg','assets/mio-hero-art.png','assets/mio-portrait-art.png','assets/mio-chibi-art.png','assets/mio-observatory-art.png','assets/prop-star-pin.png','assets/prop-telescope.png','assets/icon-192.png','assets/icon-512.png','assets/og-card.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_VERSION).then(cache=>cache.addAll(PRECACHE.map(path=>new URL(path,self.registration.scope).href))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('hoshiyomi-mio-')&&key!==CACHE_VERSION).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});

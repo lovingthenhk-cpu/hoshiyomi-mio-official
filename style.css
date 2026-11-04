@@ -45,3 +45,5 @@ body[data-theme="violet"]{--navy:#1b1434;--navy2:#2b204f;--accent:#f3b8dc;--pink
 .noscript-note{padding:20px;text-align:center;background:#243953;color:white}
 .art-download{display:flex;max-width:280px;margin:18px auto 0;justify-content:center}.footer-bottom button{color:#9db1cd;cursor:pointer;background:transparent;border:0;font:10px 'DM Mono',monospace;letter-spacing:.08em;padding:0}.footer-bottom button:hover{color:var(--accent)}
 @media(max-width:650px){.footer-bottom button{font-size:10px}}
+
+#observatory-clock{color:var(--pink);font-variant-numeric:tabular-nums;letter-spacing:.1em}

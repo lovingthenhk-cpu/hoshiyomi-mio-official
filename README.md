@@ -46,3 +46,7 @@ GitHub Pagesで`main`の`/(root)`を指定して公開します。GitHub Actions
 ## ライセンス
 
 コードはMITライセンス（`LICENSE`参照）。AI生成素材については第三者の商標・肖像等が混入していないか、商用利用前に個別確認してください。
+
+## 回帰テスト
+
+`pip install playwright` と `python -m playwright install chromium` の後、`python tests/smoke.py` または `python tests/smoke.py http://127.0.0.1:8000/` でテストできます。
