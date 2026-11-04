@@ -75,3 +75,20 @@ helperToggle.addEventListener('click',()=>{const opening=helperBubble.hidden;if(
 document.querySelector('#helper-dismiss').addEventListener('click',()=>{helperBubble.hidden=true;helperToggle.setAttribute('aria-expanded','false');helperToggle.focus()});
 favoriteButton.addEventListener('click',()=>{favoriteSaved=!favoriteSaved;safeStorage.write('mio-favorite',favoriteSaved);renderFavorite();helperMessage.textContent=favoriteSaved?'ありがとう！ このブラウザでお気に入りを覚えておくね。':'お気に入りの設定を解除したよ。'});
 renderFavorite();
+// The fictional schedule is generated locally, never fetched from a real service.
+const jstParts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()).map(p=>[p.type,Number(p.value)]));
+let scheduleYear=jstParts.year,scheduleMonth=jstParts.month;
+const eventNotes={7:'小さな通信日：ミオが遠い星に向かって一通の電波を送る日。',18:'星屑ノート更新：観測所の古いノートに、星のかけらが一つ加わります。',25:'深夜の観測会：今夜の星の物語を、いっしょに数えてみましょう。'};
+function renderCalendar(){document.querySelector('#calendar-title').textContent=`${scheduleYear}年${scheduleMonth}月`;const days=document.querySelector('#calendar-days');days.replaceChildren();const first=new Date(scheduleYear,scheduleMonth-1,1).getDay(),last=new Date(scheduleYear,scheduleMonth,0).getDate();for(let i=0;i<first;i++){const span=document.createElement('span');span.className='calendar-blank';span.setAttribute('aria-hidden','true');days.append(span)}for(let day=1;day<=last;day++){const button=document.createElement('button');button.type='button';button.textContent=String(day);const event=eventNotes[day];if(event)button.classList.add('has-event');if(scheduleYear===jstParts.year&&scheduleMonth===jstParts.month&&day===jstParts.day)button.classList.add('today');button.setAttribute('aria-label',`${scheduleYear}年${scheduleMonth}月${day}日${event?'、'+event:''}`);button.addEventListener('click',()=>{days.querySelectorAll('button').forEach(b=>b.classList.remove('selected'));button.classList.add('selected');document.querySelector('#schedule-selected').textContent=`${scheduleYear}年${scheduleMonth}月${day}日 · ${event||'この日は観測所の静かな休日です。'}`});days.append(button)}}
+function moveCalendar(direction){scheduleMonth+=direction;if(scheduleMonth<1){scheduleMonth=12;scheduleYear--}else if(scheduleMonth>12){scheduleMonth=1;scheduleYear++}renderCalendar();document.querySelector('#schedule-selected').textContent=`${scheduleYear}年${scheduleMonth}月を表示しています。星印の日を選んでください。`}
+document.querySelector('#prev-month').addEventListener('click',()=>moveCalendar(-1));document.querySelector('#next-month').addEventListener('click',()=>moveCalendar(1));renderCalendar();
+// Observation log entries open full stories rather than presenting inert arrows.
+const observationStories=[
+ '新しいアンテナの箱を開けると、そこには星のように輝く小さなネジが入っていました。いつもの古いアンテナより遠くまで聞こえるかな、と胸が高鳴ります。夜が深くなったころ、イヤホンの向こうでほんの一秒だけ、知らない誰かの声に似た音がしました。明日も、もう一度聞いてみようと思います。',
+ 'しし座の方角から、七回だけ繰り返す不思議な音が届きました。規則正しくて、少し照れくさそうなリズム。きっと偶然なのに、私は返事を送りたくなってしまいます。「こんばんは、ここにいるよ」。次の夜も同じ音が届くかどうかは、まだ誰にも分かりません。',
+ '今日のご褒美は、さくらんぼが二つのったクリームソーダ。観測所の窓に青い彗星のような光が走って、思わずスプーンが止まりました。あの光を見た誰かも、今ごろ同じように驚いているのかな。そんなことを考えながら、甘い夜を過ごしました。'
+];
+const logDialog=document.querySelector('#log-dialog');
+document.querySelectorAll('.log-item').forEach((article,index)=>{article.querySelector('.log-arrow').addEventListener('click',()=>{document.querySelector('#log-dialog-title').textContent=article.querySelector('h3').textContent;document.querySelector('#log-dialog-body').textContent=observationStories[index]||'';logDialog.showModal()})});
+document.querySelector('#close-log').addEventListener('click',()=>logDialog.close());
+logDialog.addEventListener('click',event=>{if(event.target===logDialog)logDialog.close()});
