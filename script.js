@@ -128,3 +128,19 @@ window.addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requ
 topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;document.querySelectorAll('.nav a').forEach(a=>{if(a.getAttribute('href')==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-20% 0px -65% 0px',threshold:0});document.querySelectorAll('main section[id]').forEach(section=>observer.observe(section))}
 updateScrolling();
+// Original branching narrative — all routes are stored and played locally.
+const storyNodes={
+ intro:{chapter:'PROLOGUE',line:'「おかえり。今夜はどんな星を見つけたい？」',choices:[['ラジオのつまみを回す','radio'],['望遠鏡をのぞく','sky'],['クリームソーダを一緒に飲む','soda']]},
+ radio:{chapter:'CHAPTER 01 · SIGNAL',line:'「あっ、聞こえた？ この七つの音……もしかして、誰かからのお返事かな。」',choices:[['『ここにいるよ』と返事する','signal-ending'],['電波の行き先を望遠鏡で探す','sky']]},
+ sky:{chapter:'CHAPTER 02 · STARDUST',line:'「見て！ あんなに遠い光なのに、今夜の私たちまでちゃんと届いたんだ。」',choices:[['ふたりで流星に願いごとをする','sky-ending'],['星が消える前に休憩をすすめる','soda']]},
+ soda:{chapter:'CHAPTER 03 · CREAM SODA',line:'「ふふ、さくらんぼは半分こ。星の数より、今日は話したいことがたくさんあるの。」',choices:[['また明日も来ると約束する','soda-ending'],['今度はラジオの音を聞いてみる','radio']]},
+ 'signal-ending':{chapter:'ENDING 01 · RESPONSE',line:'「……届いた！ 誰かの声が聞こえるって、こんなに温かいんだね。きみが返事をくれたからだよ。」',ending:'signal'},
+ 'sky-ending':{chapter:'ENDING 02 · METEOR',line:'「願いごと、何にしたの？ ……内緒？ じゃあ私も、きみとまた同じ空を見られますように。」',ending:'sky'},
+ 'soda-ending':{chapter:'ENDING 03 · PROMISE',line:'「約束だよ。明日の夜も、同じ席で待ってる。さくらんぼは、きみの分も残しておくね。」',ending:'soda'}
+};
+let collectedEndings=new Set((safeStorage.read('mio-story-endings',[])).filter(v=>['signal','sky','soda'].includes(v)));
+let activeStory='intro';
+function renderNovel(){const node=storyNodes[activeStory];if(node.ending){collectedEndings.add(node.ending);safeStorage.write('mio-story-endings',[...collectedEndings])}document.querySelector('#story-step').textContent=node.chapter;document.querySelector('#story-line').textContent=node.line;document.querySelector('#story-counter').textContent=`ENDINGS ${collectedEndings.size} / 3`;for(const badge of document.querySelectorAll('[data-ending-badge]'))badge.classList.toggle('collected',collectedEndings.has(badge.dataset.endingBadge));document.querySelector('#story-secret').hidden=collectedEndings.size!==3;const choices=document.querySelector('#story-choices');choices.replaceChildren();for(const [text,target] of node.choices||[['別の未来を探す','intro']]){const button=document.createElement('button');button.type='button';button.className='story-choice';button.textContent=text;button.addEventListener('click',()=>{activeStory=target;renderNovel()});choices.append(button)}}
+document.querySelector('#story-restart').addEventListener('click',()=>{activeStory='intro';renderNovel()});renderNovel();
+// Make narrative discoverable from the global site finder.
+searchableSections.splice(searchableSections.findIndex(item=>item[0]==='gallery'),0,['story','STORY','分岐する星の物語','ノベル エンディング 選択肢 読む ゲーム']);
