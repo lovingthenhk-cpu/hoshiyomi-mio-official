@@ -42,6 +42,10 @@ def main():
                 page.locator('#fan-form button').click()
                 assert '星空テスター' in page.locator('#fan-status').inner_text()
                 assert page.locator('#fan-card').evaluate('c=>c.width===1000 && c.height===600')
+                page.locator('[data-chat-prompt="眠れないんだ"]').click()
+                assert '深呼吸' in page.locator('.chat-bubble.mio').last.inner_text()
+                page.locator('#chat-clear').click()
+                assert page.locator('.chat-bubble').count()==1
             assert not errors,errors
             print(f'PASS {width}px')
             context.close()
