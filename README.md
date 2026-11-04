@@ -26,3 +26,5 @@ HTML/CSS/JSおよびSVGはこのプロジェクト向けに制作。MIT License�
 
 ## GitHub Pages
 GitHubにプッシュした後、リポジトリの Settings → Pages → Deploy from a branch → main / (root) を選ぶとビルドなしで公開できます。
+
+GitHub Actions による GitHub Pages の自動デプロイ設定も含みます。初回は Settings → Pages → Build and deployment → Source → GitHub Actions を選択してください。
