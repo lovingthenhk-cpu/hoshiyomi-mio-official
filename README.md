@@ -17,3 +17,9 @@
 
 ## 著作・ライセンス
 HTML/CSS/JSおよびSVGはこのプロジェクト向けに制作。MIT License。
+
+## Accessibility and interaction verification
+- Range slider is keyboard-accessible and exposes a label.
+- Receiver outputs an aria-live status message.
+- Reduced motion is respected.
+- Responsive navigation uses aria-expanded state.
