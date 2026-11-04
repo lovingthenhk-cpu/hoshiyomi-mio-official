@@ -99,3 +99,32 @@ const equipmentLore=[
  '丘の上にぽつんと建つ七番観測所。夜になると窓に小さな光が灯り、今日もミオがひとり、星の声を探しています。'
 ];
 document.querySelectorAll('[data-equipment]').forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.equipment);document.querySelectorAll('[data-equipment]').forEach(el=>{el.classList.toggle('active',el===button);el.setAttribute('aria-pressed',String(el===button))});document.querySelector('#equipment-tag').textContent=`COLLECTION NO. 0${index+1}`;document.querySelector('#equipment-description').textContent=equipmentLore[index]}));
+// Global section finder, no external search service.
+const searchableSections=[
+ ['about','ABOUT','プロフィール','星詠ミオの設定 身長 誕生日 趣味'],
+ ['news','NEWS','お知らせ','公式サイト 新着 更新ニュース'],
+ ['equipment','OBJECTS','ミオの宝物','髪飾り 望遠鏡 天文台 小道具'],
+ ['signal','SIGNAL','宇宙通信','87.7 MHz ラジオ メッセージ'],
+ ['voice','VOICE','音声とBGM','セリフ 読み上げ 音声合成 電子音'],
+ ['schedule','SCHEDULE','観測カレンダー','予定 イベント 架空'],
+ ['log','LOG','星屑の日誌','観測記録 ストーリー'],
+ ['gallery','GALLERY','イラスト集','ギャラリー イラスト 立ち絵'],
+ ['star-map','STAR MAP','七つの星探し','ゲーム 星図 隠しメッセージ'],
+ ['letter','LETTER','星への手紙','メモ お便り 保存'],
+ ['wallpaper','WALLPAPER','壁紙メーカー','画像 ダウンロード PNG']
+];
+const searchDialog=document.querySelector('#site-search'),searchInput=document.querySelector('#site-search-input'),searchResults=document.querySelector('#site-search-results');
+function populateSearch(){searchResults.replaceChildren();const query=searchInput.value.trim().toLocaleLowerCase('ja-JP');let count=0;for(const [id,label,title,keywords] of searchableSections){if(!`${label} ${title} ${keywords}`.toLocaleLowerCase('ja-JP').includes(query))continue;const button=document.createElement('button');button.type='button';button.className='site-search-result';const n=document.createElement('span');n.textContent=String(++count).padStart(2,'0');const detail=document.createElement('span');const strong=document.createElement('strong');strong.textContent=title;const small=document.createElement('small');small.textContent=label;detail.append(strong,small);button.append(n,detail);button.addEventListener('click',()=>{searchDialog.close();document.getElementById(id)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});searchResults.append(button)}if(count===0){const p=document.createElement('p');p.className='site-search-empty';p.textContent='見つかりませんでした。別のキーワードを試してください。';searchResults.append(p)}}
+function openSiteSearch(){if(searchDialog.open)return;searchInput.value='';populateSearch();searchDialog.showModal();searchInput.focus()}
+document.querySelector('#search-open').addEventListener('click',openSiteSearch);
+document.querySelector('#search-close').addEventListener('click',()=>searchDialog.close());
+searchInput.addEventListener('input',populateSearch);
+document.querySelector('#site-search-form').addEventListener('submit',event=>{event.preventDefault();searchResults.querySelector('button')?.click()});
+document.addEventListener('keydown',event=>{const typing=event.target instanceof HTMLElement&&(['INPUT','TEXTAREA'].includes(event.target.tagName)||event.target.isContentEditable);if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();if(searchDialog.open)searchDialog.close();else openSiteSearch()}else if(event.key==='/'&&!typing&&!searchDialog.open&&!event.altKey&&!event.ctrlKey&&!event.metaKey){event.preventDefault();openSiteSearch()}});
+// Lightweight scroll state and current-section link highlight.
+const scrollProgress=document.querySelector('#scroll-progress'),topButton=document.querySelector('#to-top');let scrollPending=false;
+function updateScrolling(){const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);scrollProgress.style.transform=`scaleX(${Math.max(0,Math.min(1,window.scrollY/max))})`;topButton.classList.toggle('visible',window.scrollY>900);scrollPending=false}
+window.addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateScrolling)}},{passive:true});
+topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;document.querySelectorAll('.nav a').forEach(a=>{if(a.getAttribute('href')==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-20% 0px -65% 0px',threshold:0});document.querySelectorAll('main section[id]').forEach(section=>observer.observe(section))}
+updateScrolling();
