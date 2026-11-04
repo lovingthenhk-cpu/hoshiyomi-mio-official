@@ -38,6 +38,10 @@ def main():
                 assert '1 / 3' in page.locator('#story-counter').inner_text()
                 page.locator('#wallpaper-size').select_option('square')
                 assert page.locator('#wallpaper-preview').evaluate('c=>c.width===1080 && c.height===1080')
+                page.locator('#fan-name').fill('星空テスター')
+                page.locator('#fan-form button').click()
+                assert '星空テスター' in page.locator('#fan-status').inner_text()
+                assert page.locator('#fan-card').evaluate('c=>c.width===1000 && c.height===600')
             assert not errors,errors
             print(f'PASS {width}px')
             context.close()
