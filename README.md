@@ -23,3 +23,6 @@ HTML/CSS/JSおよびSVGはこのプロジェクト向けに制作。MIT License�
 - Receiver outputs an aria-live status message.
 - Reduced motion is respected.
 - Responsive navigation uses aria-expanded state.
+
+## GitHub Pages
+GitHubにプッシュした後、リポジトリの Settings → Pages → Deploy from a branch → main / (root) を選ぶとビルドなしで公開できます。
