@@ -1,30 +1,38 @@
-# 星詠ミオ — Official Character Website
+# 星詠ミオ — Hoshiyomi Mio Official Website
 
-**架空のオリジナルキャラクター『星詠ミオ』の非商用デモ公式サイト。** 既存作品とは別の独立プロジェクトです。
+オリジナル架空キャラクター「星詠ミオ」の公式サイトを想定した独立制作プロジェクトです。既存作品や実在する人物とは無関係です。
+
+## デモ
+https://lovingthenhk-cpu.github.io/hoshiyomi-mio-official/
 
 ## 機能
-- レスポンシブ対応のシングルページ、静的HTML/CSS/JavaScript
-- イラストもオリジナルのSVG（外部画像依存なし）
-- 87.7 MHzでメッセージを受信できるインタラクティブラジオ
-- プロフィール、観測日誌、ギャラリー
-- キーボード操作、状態通知、低モーション設定に配慮
+
+- 生成画像から制作した周辺透過のキャラクター・天文台・ミニキャラ画像をCSSと合成
+- ニュースのカテゴリーフィルターと拡大可能なギャラリー
+- ラジオ風の周波数受信UI（87.7 MHzでメッセージ表示）
+- 七つの星を探す星図ゲームと隠しメッセージ（ブラウザに進捗保存）
+- 自分だけの手紙帳（ブラウザのlocalStorageにのみ保存・削除可能）
+- PNG壁紙メーカー（モバイル1080×1920、PC1920×1080、正方形1080×1080）
+- レスポンシブ表示、キーボード操作、低モーション設定を考慮
 
 ## 起動
-`python3 -m http.server 8000` でローカルサーバーを開いてください。ビルド不要です。
 
-## キャラクター
-**星詠 ミオ (Hoshiyomi Mio)**：夜の観測所で星からの電波を集める少女。7月7日生まれ、身長158cm。好きなものは流星群、クリームソーダ、古いラジオ。実在人物・団体とは関係ありません。
+静的HTML/CSS/JavaScriptのみ。ビルドは不要です。
 
-## 著作・ライセンス
-HTML/CSS/JSおよびSVGはこのプロジェクト向けに制作。MIT License。
+```sh
+python3 -m http.server 8000
+```
 
-## Accessibility and interaction verification
-- Range slider is keyboard-accessible and exposes a label.
-- Receiver outputs an aria-live status message.
-- Reduced motion is respected.
-- Responsive navigation uses aria-expanded state.
+## デプロイ
 
-## GitHub Pages
-GitHubにプッシュした後、リポジトリの Settings → Pages → Deploy from a branch → main / (root) を選ぶとビルドなしで公開できます。
+GitHub Pagesで`main`の`/(root)`を指定して公開します。GitHub Actionsの`workflow`権限は不要です。
 
-このリポジトリは静的サイトなので、Settings → Pages → Build and deployment → Source → Deploy from a branch → main /(root) を選ぶだけで公開できます。
+## アート制作と注意事項
+
+サイトのキャラクター素材にはAI生成されたサイトモックアップから切り出し、周辺を透過処理したPNGを使用しています。**厳密な人物輪郭の透過切り抜きではありません**。背景、情報カード、テキスト、ナビゲーション、波形、星図、壁紙の描画はHTML/CSS/JavaScriptで実装しています。初期バージョンの手描きSVGも`assets/mio.svg`に残しています。
+
+サイトの投稿・イベント情報は架空の演出です。受信メッセージは実際の音声通信ではなく、プログラムで表示する文章です。ユーザーの手紙はサーバーに送信されません。
+
+## ライセンス
+
+コードはMITライセンス（`LICENSE`参照）。AI生成素材については第三者の商標・肖像等が混入していないか、商用利用前に個別確認してください。

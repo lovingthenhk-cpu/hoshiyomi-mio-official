@@ -2,3 +2,6 @@
 server.log
 .DS_Store
 node_modules/
+
+# Generated visual assets are intentionally versioned
+!assets/*.png
