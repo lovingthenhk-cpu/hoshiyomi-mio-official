@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1000" viewBox="0 0 700 1000"><defs><linearGradient id="hair" x2="1" y2="1"><stop stop-color="#718ac4"/><stop offset=".48" stop-color="#354672"/><stop offset="1" stop-color="#111b38"/></linearGradient><linearGradient id="coat" x2="1" y2="1"><stop stop-color="#fcfaf8"/><stop offset="1" stop-color="#b3c7dc"/></linearGradient><linearGradient id="eyes" x2="0" y2="1"><stop stop-color="#186084"/><stop offset="1" stop-color="#a2e7df"/></linearGradient></defs>
+<!-- hair and long silhouette -->
+<path d="M251 254Q158 300 142 534L91 939Q162 981 218 929L285 755L433 755L501 937Q581 973 612 906Q553 622 539 432Q510 284 442 238Z" fill="url(#hair)" stroke="#8799c7" stroke-width="5"/>
+<path d="M211 355Q162 575 125 906M487 341Q540 608 579 903" fill="none" stroke="#a7b3db" stroke-width="6" opacity=".32"/>
+<!-- legs and shoes -->
+<path d="M284 736L274 950Q301 978 347 950L358 738M395 740L412 951Q449 971 484 946L462 730" fill="#e5c0bb" stroke="#bd979f" stroke-width="4"/>
+<path d="M276 847L269 955Q305 973 348 951L351 846M405 844L411 951Q448 976 484 945L469 838" fill="#18264d"/><path d="M274 930Q237 944 229 977Q269 1000 346 978L347 939M409 936L409 979Q479 995 519 972Q509 941 481 934" fill="#2a3c67" stroke="#89a2c6" stroke-width="4"/>
+<!-- flared navy dress -->
+<path d="M278 567Q235 677 214 776Q350 829 519 772Q475 659 448 562Z" fill="#24365d" stroke="#91abd1" stroke-width="5"/><path d="M234 758Q359 792 500 751" fill="none" stroke="#e6b4d8" stroke-width="8"/><path d="M283 628L243 755M422 626L477 765" stroke="#8fb9d1" stroke-width="5" opacity=".4"/>
+<!-- jacket -->
+<path d="M300 440Q248 445 222 480L190 648Q208 703 254 678L278 601L265 718Q346 769 460 711L436 601L467 672Q508 697 526 651L486 480Q453 444 411 442Z" fill="url(#coat)" stroke="#90abc4" stroke-width="5"/>
+<path d="M231 479Q188 535 177 651L201 680Q229 701 258 669L264 619L239 605L269 523M474 479Q518 525 531 637L512 684Q485 704 455 672L446 616L474 599L451 525" fill="url(#coat)" stroke="#92afc9" stroke-width="5"/>
+<path d="M188 663Q170 701 189 726Q214 749 239 703L226 667M478 669Q464 703 483 727Q513 744 525 705L515 665" fill="#f0c8c3" stroke="#bc929d" stroke-width="4"/>
+<!-- neck -->
+<path d="M316 399L315 466Q354 503 393 462L387 399" fill="#f0c8c3" stroke="#bf96a2" stroke-width="4"/>
+<!-- uniform lapels -->
+<path d="M306 447L355 520L405 446L441 473L397 563L356 614L310 561L270 470Z" fill="#e3eaf0" stroke="#91abc8" stroke-width="4"/><path d="M304 454L354 529L406 453L384 554L357 596L326 547Z" fill="#fdfdf6"/><path d="M293 469L354 533L323 556M420 464L357 533L388 556" fill="none" stroke="#4f688e" stroke-width="8"/><path d="M355 525V703" stroke="#8eaac7" stroke-width="5"/><circle cx="359" cy="616" r="5" fill="#6686ab"/><circle cx="359" cy="660" r="5" fill="#6686ab"/>
+<!-- ribbon -->
+<path d="M352 485Q317 453 296 469Q286 499 315 506L353 495Q390 520 411 499Q426 473 402 465Z" fill="#7cc5c5" stroke="#4e8ba0" stroke-width="4"/><path d="M352 501L318 572L351 552L377 574L361 501" fill="#72acbd"/><circle cx="354" cy="492" r="13" fill="#e6b7dc" stroke="#8b6a9c" stroke-width="3"/>
+<!-- oval face -->
+<path d="M245 305Q214 296 232 346Q243 364 265 362M444 305Q473 295 464 346Q450 366 437 357" fill="#efc6c1" stroke="#b8919d" stroke-width="4"/>
+<path d="M255 243Q263 170 351 160Q448 174 451 265L437 372Q421 422 353 451Q290 435 262 371Z" fill="#f5d4cb" stroke="#bd959e" stroke-width="5"/><ellipse cx="286" cy="357" rx="28" ry="12" fill="#ed9ba5" opacity=".37"/><ellipse cx="419" cy="357" rx="28" ry="12" fill="#ed9ba5" opacity=".37"/>
+<!-- eyes -->
+<path d="M273 313Q301 293 336 313L324 336Q290 347 273 313M378 311Q412 293 438 311Q429 343 398 338Z" fill="#fbfeff"/><ellipse cx="309" cy="319" rx="19" ry="24" fill="url(#eyes)"/><ellipse cx="405" cy="318" rx="19" ry="24" fill="url(#eyes)"/><ellipse cx="311" cy="318" rx="9" ry="17" fill="#174668"/><ellipse cx="406" cy="315" rx="9" ry="17" fill="#174668"/><circle cx="300" cy="307" r="7" fill="white"/><circle cx="396" cy="307" r="7" fill="white"/><circle cx="318" cy="329" r="3" fill="white"/><circle cx="415" cy="328" r="3" fill="white"/><path d="M271 308Q303 285 335 307M377 307Q414 284 439 305" fill="none" stroke="#27365c" stroke-width="9" stroke-linecap="round"/><path d="M287 286L325 285M385 285L424 290" stroke="#526080" stroke-width="6" stroke-linecap="round"/><path d="M350 343Q343 356 355 358" fill="none" stroke="#d5a7a9" stroke-width="3"/><path d="M338 383Q352 393 371 382" fill="none" stroke="#b9778d" stroke-width="4" stroke-linecap="round"/>
+<!-- bangs -->
+<path d="M251 306Q219 246 250 170Q290 95 378 114Q478 117 474 245Q467 285 441 311L432 240Q416 273 381 291L367 214Q334 292 276 306L287 227Q275 270 251 306Z" fill="url(#hair)" stroke="#6173a6" stroke-width="5"/><path d="M276 178Q325 139 378 152M323 161Q322 222 281 278M381 160Q413 212 376 276M439 198Q451 242 435 281" fill="none" stroke="#a1b0db" stroke-width="7" stroke-linecap="round" opacity=".46"/>
+<!-- side bangs -->
+<path d="M247 267Q213 375 240 486L269 531Q257 445 275 355L272 275M451 266Q493 372 468 485L434 529Q448 436 428 354L432 274" fill="url(#hair)" stroke="#6579ab" stroke-width="4"/>
+<!-- star hairpins -->
+<path d="M435 163L445 184L468 190L453 207L457 229L435 219L414 230L418 208L403 191L425 186Z" fill="#ffe7a7" stroke="#b09582" stroke-width="3"/><circle cx="436" cy="198" r="5" fill="#fff"/><path d="M479 155l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" fill="#b9e9dc"/><path d="M190 270l5 16 16 5-16 5-5 16-5-16-16-5 16-5z" fill="#b3e1e0" opacity=".8"/>
+</svg>
